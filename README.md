@@ -34,7 +34,7 @@ gracenode.cron
 
 In your config, make sure you have the schedule set for your task to run, for example:
 ```
-    "methods:" {
+    "modules:" {
 		"cron": {
 			"myCronJob": {
 				"schedule": "*/30 * * * * *"

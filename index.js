@@ -1,4 +1,4 @@
-var gracenode = require('../../');
+var gracenode = require('../gracenode');
 var log       = gracenode.log.create('cron');
 var jobs      = {};
 var CronJob   = require('cron').CronJob;

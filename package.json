@@ -1,0 +1,28 @@
+{
+	"name": "gracenode-cron",
+	"description": "cron module for gracenode module.",
+	"version": "0.1.0",
+	"author": "Nobuyori Takahashi <voltrue2@yahoo.com>",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/voltrue2/gracenode-cron.git"
+	},
+	"dependencies": {
+		"cron": "1.0.4"
+	},
+	"devDependencies": {
+		"mocha": "1.18.2"
+	},
+	"engine": "node >= 0.10.20",
+	"contributors": [
+		{ "name": "Brian de Heus", "email": "me@brian.jp" }
+	],
+	"keywords": [
+		"gracenode",
+		"framework",
+		"module",
+		"schedule",
+		"cron"
+	],
+	"license": "MIT"
+}

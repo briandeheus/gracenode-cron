@@ -7,11 +7,12 @@ var CronJob   = require('cron').CronJob;
 * Wrapper arround node-cron to make it work better with Gracenode.
 * @constructor
 * @param {string} time A cron-style time object, e.g 0 0 *\/1 * *
+* @param {Date} time A JS date object e.g new Date()
 */
 
 function Cron(time) {
 
-	this._cron = new CronJob({cronTime: time});
+	this._cron = new CronJob(time);
 
 }
 

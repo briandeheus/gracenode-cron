@@ -99,12 +99,19 @@ exports.readConfig = function (config) {
 * Return a Cron object.
 * @param {string} name Name of the task
 * @param {schedule} schedule* optional schedule if you're creating a new task that is not set in the config.
+* @param {override} override* optional if true, the module discards the cached Cron object and creates a new
+* @param {cb} cb* optional callback to be executed at the given schedule
 * @returns {Cron} cron object.
 */
-exports.create = function (name, schedule, cb) {
+exports.create = function (name, schedule, override, cb) {
 	
 	if (jobs[name]) {
-		return jobs[name];
+		if (override) {
+			jobs[name].stop();
+			delete jobs[name];
+		} else {
+			return jobs[name];
+		}
 	}
 
 	if (!schedule) {

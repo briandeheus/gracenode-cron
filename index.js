@@ -9,10 +9,13 @@ var CronJob   = require('cron').CronJob;
 * @param {string} time A cron-style time object, e.g 0 0 *\/1 * *
 * @param {Date} time A JS date object e.g new Date()
 */
+// there is a bug in cron module:
+/*
+ * when time is a Date object and there is no callback as the 2nd argument, cron module breaks
+ * */
+function Cron(time, cb) {
 
-function Cron(time) {
-
-	this._cron = new CronJob(time);
+	this._cron = new CronJob(time, cb);
 
 }
 
@@ -96,19 +99,26 @@ exports.readConfig = function (config) {
 * Return a Cron object.
 * @param {string} name Name of the task
 * @param {schedule} schedule* optional schedule if you're creating a new task that is not set in the config.
+* @param {override} override* optional if true, the module discards the cached Cron object and creates a new
+* @param {cb} cb* optional callback to be executed at the given schedule
 * @returns {Cron} cron object.
 */
-exports.create = function (name, schedule) {
+exports.create = function (name, schedule, override, cb) {
 	
 	if (jobs[name]) {
-		return jobs[name];
+		if (override) {
+			jobs[name].stop();
+			delete jobs[name];
+		} else {
+			return jobs[name];
+		}
 	}
 
 	if (!schedule) {
 		throw new Error('scheduleExpectedForNewCronJob');
 	}
 
-	var cronJob = new Cron(schedule);
+	var cronJob = new Cron(schedule, cb);
 	jobs[name]  = cronJob;
 
 	return cronJob;

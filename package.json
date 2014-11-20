@@ -1,7 +1,7 @@
 {
 	"name": "gracenode-cron",
 	"description": "cron module for gracenode module.",
-	"version": "0.1.1",
+	"version": "0.1.3",
 	"author": "Brian de Heus <me@brian.js>",
 	"repository": {
 		"type": "git",

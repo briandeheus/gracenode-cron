@@ -10,11 +10,11 @@
 if [ -z "$JSHINT" ]; then
 	JSHINT="jshint"
 fi
-name="gracenode";
+name="gracenode-cron";
 cwd=`pwd`;
 # list directories/files to lint
 list=();
-defaultDirList="index.js core/ modules/";
+defaultDirList="index.js";
 # optional space separated list of directories/files to lint
 # Example: ./lint.sh "mydir/ myFile" > this will lint all files in mydir/ and lint myFile
 dirList=$1;
